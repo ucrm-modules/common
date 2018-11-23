@@ -163,6 +163,7 @@ final class Plugin
     {
         $root = self::getRootPath();
 
+        /** @noinspection PhpComposerExtensionStubsInspection - As this extension is NOT Available for Windows! */
         $owner = posix_getpwnam($user);
         $ownerId = $owner["uid"];
         $groupId = $owner["gid"];

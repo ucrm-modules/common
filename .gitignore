@@ -1,7 +1,5 @@
 .idea/
 
-encryption/
 vendor/
-tests/.env
+
 .env
-composer.lock
