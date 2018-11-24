@@ -109,9 +109,8 @@ final class Log
         // Get the current log file's path.
         $logFile = self::logFile();
 
+        //$message = str_replace("\n", "\n                             ", $message);
         $entry = new LogEntry(new \DateTimeImmutable(), $severity, $message);
-
-        $message = str_replace("\n", "\n                             ", $message);
 
         // Append the contents to the current log file, creating it as needed.
         file_put_contents($logFile, $entry, FILE_APPEND | LOCK_EX);

@@ -2,7 +2,7 @@
 
 require __DIR__.'/../../vendor/autoload.php';
 
-use MVQN\UCRM\Plugins\Plugin;
+use UCRM\Common\Plugin;
 
 switch($argv[1])
 {

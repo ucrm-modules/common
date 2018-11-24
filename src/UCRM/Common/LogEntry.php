@@ -95,7 +95,7 @@ class LogEntry extends AutoObject
         return
             "[{$this->timestamp->format(self::TIMESTAMP_FORMAT_DATETIME)}] ".
             ($this->severity !== "" ? "[{$this->severity}] " : "").
-            $this->text.
+            str_replace("\n", "\n                             ", $this->text).
             PHP_EOL;
     }
 

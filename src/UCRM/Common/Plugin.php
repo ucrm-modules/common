@@ -21,7 +21,7 @@ final class Plugin
     // -----------------------------------------------------------------------------------------------------------------
 
     private const DEFAULT_SETTINGS_CLASSNAME = "Settings";
-    private const DEFAULT_SETTINGS_NAMESPACE = "MVQN\\UCRM\\Plugins";
+    private const DEFAULT_SETTINGS_NAMESPACE = "Plugin";
 
     // =================================================================================================================
     // INITIALIZATION

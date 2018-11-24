@@ -19,6 +19,7 @@
 
         "mvqn/data": "1.*",
         "mvqn/dynamics": "1.*",
+        "mvqn/rest": "1.*",
         "ucrm-modules/data": "1.*",
 
         "nette/php-generator": "~3.2",
@@ -35,6 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "UCRM\\": "tests/UCRM/"
         }
     }
 }
