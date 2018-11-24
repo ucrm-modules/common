@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace UCRM\Common;
+namespace UCRM\Sessions;
 
 use MVQN\REST\RestClient;
 use UCRM\Common\Config;
