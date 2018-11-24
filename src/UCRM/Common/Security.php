@@ -11,8 +11,6 @@ use UCRM\Common\Config;
 class Security
 {
 
-
-
     public static function getCurrentUser(): ?array
     {
         if(!isset($_COOKIE["PHPSESSID"]))
@@ -20,6 +18,7 @@ class Security
 
         $sessionId = $_COOKIE["PHPSESSID"];
         $cookie = "PHPSESSID=" . preg_replace('~[^a-zA-Z0-9]~', '', $_COOKIE['PHPSESSID']);
+
 
         $host = Config::getServerFQDN();
 
@@ -39,51 +38,26 @@ class Security
                 break;
         }
 
-        $url = "$protocol://$host$port/current-user";
+        $url = "$protocol://$host$port";
 
         $headers = [
-            "Content-Type" => "application/json",
-            "Cookie" => "PHPSESSID=" . preg_replace('~[^a-zA-Z0-9]~', "", $_COOKIE["PHPSESSID"] ?? ""),
+            "Content-Type: application/json",
+            "Cookie: PHPSESSID=" . preg_replace('~[^a-zA-Z0-9]~', "", $_COOKIE["PHPSESSID"] ?? ""),
         ];
 
+        $oldUrl = RestClient::getBaseUrl();
         $oldHeaders = RestClient::getHeaders();
 
-        $headerPairs = [];
+        RestClient::setBaseUrl($url);
+        RestClient::setHeaders($headers);
 
-        foreach($oldHeaders as $oldHeader)
-        {
-            $parts = explode(":", $oldHeader);
-            $key = array_shift($parts);
-            $value = implode(":", $parts);
+        $results =  RestClient::get("/current-user");
 
-            $headerPairs[$key] = $value;
-        }
-
-        $headerPairs = array_merge($headerPairs, $headers);
-
-        $newHeaders = [];
-
-        foreach($headerPairs as $key => $value)
-        {
-            $newHeaders[] = "$key: $value";
-        }
-
-
-        RestClient::setHeaders($newHeaders);
-
-        $results =  RestClient::get($url);
-
+        RestClient::setBaseUrl($oldUrl);
         RestClient::setHeaders($oldHeaders);
 
         return $results;
     }
-
-
-
-
-
-
-
 
 
 }
