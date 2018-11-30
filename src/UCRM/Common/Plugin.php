@@ -452,13 +452,13 @@ final class Plugin
      * @throws Exceptions\PluginNotInitializedException
      */
     public static function createSettings(string $namespace = self::DEFAULT_SETTINGS_NAMESPACE,
-                                          string $class = self::DEFAULT_SETTINGS_CLASSNAME): void
+                                          string $class = self::DEFAULT_SETTINGS_CLASSNAME, string $path = null): void
     {
         // Get the root path for this Plugin, throws an Exception if not already initialized.
         $root = self::getRootPath();
 
         // Generate the source path based on namespace using PSR-4 standards for composer.
-        $path = self::getSourcePath()."/".str_replace("\\", "/", $namespace);
+        $path = ($path === null ? self::getSourcePath() : $path)."/".str_replace("\\", "/", $namespace);
 
         // IF the path does not already exist, THEN create it!
         if(!file_exists($path))
