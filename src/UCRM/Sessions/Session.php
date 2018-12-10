@@ -20,7 +20,8 @@ class Session
         $cookie = "PHPSESSID=" . preg_replace('~[^a-zA-Z0-9]~', '', $_COOKIE['PHPSESSID']);
 
 
-        $host = Config::getServerFQDN();
+        //$host = Config::getServerFQDN();
+        $host = "localhost";
 
         switch(Config::getServerPort())
         {
@@ -50,6 +51,8 @@ class Session
 
         RestClient::setBaseUrl($url);
         RestClient::setHeaders($headers);
+
+        //var_dump(RestClient::getBaseUrl());
 
         $results =  RestClient::get("/current-user");
 
